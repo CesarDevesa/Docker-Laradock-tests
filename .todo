@@ -1,0 +1,19 @@
+TODO ...
+
+
+### Same commands
+
+# List commands
+docker-composer
+
+# Version
+docker-composer -v
+
+# List container
+docker ps
+
+docker-compose up -d nginx mysql phpmyadmin
+
+
+# Restart
+docker-compose restart
