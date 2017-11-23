@@ -1,7 +1,38 @@
 TODO ...
 
 
-### Same commands
+DOCKER NÂO FUNCIONA CORRETAMENTE DENTRO DE "Links Simbolicos"
+
+
+### Contornando erro ao reiniciar PC (Windows) #################################
+
+-Desabilitar "Docker for Windows" do "Inicializar" (ctrl+shift+esc)
+-No Agendador de Tarefas add task:
+ +Geral:
+ --Opções de segurança
+ ---<Selecionar usuário>
+ ---Executar somente quando o usuário estiver conectado
+ +Disparador
+ --Ao fazer logon
+ --Configurações
+ ---Usuário específico <Selecionar usuário>
+ --Configurações avançadas
+ ---Habilitado
+ +Ações
+ --Iniciar um programa
+ --Programa/script: "C:\Program Files\Docker\Docker\Docker for Windows.exe"
+ +Condições
+ --
+ +Configurações
+ --Se ocorrer falha na tarefa, reiniciar a cada: 1 min
+ --Não iniciar uma nova instância
+
+####################################################################################
+
+
+
+
+### Same commands ###########
 
 # List commands
 docker-composer
@@ -12,8 +43,84 @@ docker-composer -v
 # List container
 docker ps
 
-docker-compose up -d nginx mysql phpmyadmin
+# Imagens baixadas
+docker images
+
+# Todos containers existentes
+docker ps -a
+
+# Todos containers ativos
+docker ps
+
+# Cria container em falso terminal (-t pseudo-TTY)
+docker run -ti ubuntu
+
+-t       pseudo-TTY
+-i       interactive
+-d       background
+https://docs.docker.com/v1.11/engine/reference/commandline/run/
 
 
 # Restart
 docker-compose restart
+
+
+# RUN Cria e entra no container
+docker run -it ubuntu /bin/bash
+docker run -it ubuntu
+
+apt-get update
+apt-get install vim
+
+
+exit OR ctrl + d     Finaliza o shell / Mata o container
+ctrl + p + q         Sair e manter em execução 
+
+# Retorna ao container
+docker attach <id>
+
+# CREATE Apenas cria sem start
+docker create ubuntu
+
+# STOP / START
+docker stop <id>
+
+# PAUSE / UNPAUSE
+docker pause <id>
+
+# STATS Uso de recursos
+docker stats <id>
+
+# LOGS Info de log
+docker logs <id>
+
+# RM Remove, apaga container
+docker rm <id>
+docker rm -f <id> //Force case in running
+
+# RM Remover todos >>>> usar BASH do CMDER
+docker stop $(docker ps -a -q)
+docker rm -f $(docker ps -a -q)
+
+-a   All
+-q   Quiet
+-f   Force
+
+
+
+# Inicia Laradock - NÂO FUNCIONA DENTRO DE "Links Simbolicos"
+docker-compose up -d nginx mysql phpmyadmin
+
+
+docker start cf7f16c3f8c6 a8eae3d825ba ad91edece623 8147fb82d0b0 c3743012bc4c
+
+
+
+
+
+
+
+
+
+
+
